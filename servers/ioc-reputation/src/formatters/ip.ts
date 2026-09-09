@@ -246,29 +246,33 @@ export function formatIpResults(data: IpData): FormattedResult {
         // report 20 items and render nothing — which used to print a count
         // followed by twenty bare "• SSL Certificate" lines. Say the items
         // exist without detail instead of padding the output.
-        // A rendered line whose every field fell back to 'Unknown' carries no
-        // information — the per-type branches build one from optional
-        // attributes VirusTotal did not return, so 20 items become 20
-        // identical stanzas. Patching one branch (certificates) missed
-        // communicating_files and resolutions, which fail the same way.
-        const hasContent = (line: string) =>
-          line.replace(/^\s*[•\-]\s*/gm, "")
-              .split("\n")
-              .some(l => {
-                const v = l.includes(":") ? l.split(":").slice(1).join(":") : l;
-                const t = v.trim();
-                return t !== "" && t !== "Unknown";
-              });
+        // Strip Unknown FIELDS, not whole stanzas. VirusTotal omits
+        // relationship attributes unless asked for them, so a
+        // communicating_files entry renders a real hash followed by
+        // "Type: Unknown / First Seen: Unknown". An earlier filter worked per
+        // stanza: the hash counted as content, so both Unknown lines printed
+        // anyway — 40 of them for one IP.
+        const stripUnknownFields = (line: string): string => {
+          const kept = line.split("\n").filter(l => {
+            const i = l.indexOf(":");
+            if (i === -1) return l.trim() !== "";          // bare value line
+            const v = l.slice(i + 1).trim();
+            return v !== "" && v !== "Unknown";
+          });
+          // Nothing but a bullet left means the item carried no data at all.
+          const meaningful = kept.filter(l => l.replace(/^\s*[•\-]\s*/, "").trim() !== "");
+          return meaningful.length ? kept.join("\n") : "";
+        };
 
         const rendered: string[] = [];
         if (Array.isArray(relData.data)) {
           relData.data.forEach(item => {
             const line = formatRelationshipData(relType, item);
-            if (line && hasContent(line)) rendered.push(line);
+            { const t = stripUnknownFields(line); if (t) rendered.push(t); }
           });
         } else if (relData.data) {
           const line = formatRelationshipData(relType, relData.data);
-          if (line && hasContent(line)) rendered.push(line);
+          { const t = stripUnknownFields(line); if (t) rendered.push(t); }
         }
 
         if (rendered.length) {
