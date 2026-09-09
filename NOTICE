@@ -8,4 +8,6 @@ each server's LICENSE file.
   servers/cti-platform     — zxzinn/opencti-mcp
   servers/n8n              — CyberSamuraiX/hermes-n8n-mcp
 
+servers/nvd is first-party SOCIS work, not a fork.
+
 Modifications by SOCIS are documented per server in PATCHES.md.

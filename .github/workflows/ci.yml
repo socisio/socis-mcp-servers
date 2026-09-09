@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        server: [threat-intel, ioc-reputation, attack-surface, cti-platform, n8n]
+        server: [threat-intel, ioc-reputation, attack-surface, cti-platform, n8n, nvd]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
