@@ -501,9 +501,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         // OTX
         if (services.otx) {
           try {
-            const hashType = hash.length === 32 ? "MD5" : hash.length === 40 ? "SHA1" : "SHA256";
+            // OTX takes the hash DIRECTLY after /file — there is no
+            // indicator-type segment, and it infers MD5/SHA1/SHA256 from the
+            // length itself. The extra segment made every hash lookup return
+            // `404 endpoint not found`, which reads as "OTX has no data on
+            // this hash" rather than "the request was malformed".
             const otxResult = await apiRequest<unknown>(
-              `${config.otx.baseUrl}/indicators/file/${hashType}/${hash}/general`,
+              `${config.otx.baseUrl}/indicators/file/${hash}/general`,
               { headers: { "X-OTX-API-KEY": config.otx.apiKey! } }
             );
             results.otx = otxResult;
@@ -513,18 +517,31 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
 
         // MalwareBazaar
-        try {
-          const mbResult = await apiRequest<unknown>(
-            config.abusech.malwarebazaar,
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/x-www-form-urlencoded" },
-              body: `query=get_info&hash=${encodeURIComponent(hash)}`,
-            }
-          );
-          results.malwarebazaar = mbResult;
-        } catch (e) {
-          results.malwarebazaar = { error: e instanceof Error ? e.message : String(e) };
+        // Guarded on services.abusech and sends Auth-Key, matching
+        // `malwarebazaar_hash`. Without the header abuse.ch returns 401 even
+        // with a valid key configured — the per-source tool worked while this
+        // one did not, in the same process, seconds apart. Unguarded it also
+        // fired with no key at all, turning a missing credential into an
+        // "error" the caller could mistake for a negative result.
+        if (services.abusech) {
+          try {
+            const mbResult = await apiRequest<unknown>(
+              config.abusech.malwarebazaar,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/x-www-form-urlencoded",
+                  "Auth-Key": config.abusech.authKey!,
+                },
+                body: `query=get_info&hash=${encodeURIComponent(hash)}`,
+              }
+            );
+            results.malwarebazaar = mbResult;
+          } catch (e) {
+            results.malwarebazaar = { error: e instanceof Error ? e.message : String(e) };
+          }
+        } else {
+          results.malwarebazaar = { skipped: "ABUSECH_AUTH_KEY not set" };
         }
 
         return {
