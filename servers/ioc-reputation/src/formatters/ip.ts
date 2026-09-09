@@ -1,7 +1,7 @@
 // src/formatters/ip.ts
 
 import { FormattedResult } from './types.js';
-import { formatDateTime, formatDetectionResults } from './utils.js';
+import { formatDateTime, formatDetectionResults, renderRelationshipGroup } from './utils.js';
 import { logToFile } from '../utils/logging.js';
 import { RelationshipData } from '../types/virustotal.js';
 
@@ -239,47 +239,9 @@ export function formatIpResults(data: IpData): FormattedResult {
       outputArray.push('\n🔗 Relationships:');
       
       for (const [relType, relData] of Object.entries(data.relationships)) {
-        const count = relData.meta?.count || (Array.isArray(relData.data) ? relData.data.length : 1);
-        
-        // Render first, then decide on the header. VirusTotal omits
-        // relationship attributes unless asked for them, so a relationship can
-        // report 20 items and render nothing — which used to print a count
-        // followed by twenty bare "• SSL Certificate" lines. Say the items
-        // exist without detail instead of padding the output.
-        // Strip Unknown FIELDS, not whole stanzas. VirusTotal omits
-        // relationship attributes unless asked for them, so a
-        // communicating_files entry renders a real hash followed by
-        // "Type: Unknown / First Seen: Unknown". An earlier filter worked per
-        // stanza: the hash counted as content, so both Unknown lines printed
-        // anyway — 40 of them for one IP.
-        const stripUnknownFields = (line: string): string => {
-          const kept = line.split("\n").filter(l => {
-            const i = l.indexOf(":");
-            if (i === -1) return l.trim() !== "";          // bare value line
-            const v = l.slice(i + 1).trim();
-            return v !== "" && v !== "Unknown";
-          });
-          // Nothing but a bullet left means the item carried no data at all.
-          const meaningful = kept.filter(l => l.replace(/^\s*[•\-]\s*/, "").trim() !== "");
-          return meaningful.length ? kept.join("\n") : "";
-        };
-
-        const rendered: string[] = [];
-        if (Array.isArray(relData.data)) {
-          relData.data.forEach(item => {
-            const line = formatRelationshipData(relType, item);
-            { const t = stripUnknownFields(line); if (t) rendered.push(t); }
-          });
-        } else if (relData.data) {
-          const line = formatRelationshipData(relType, relData.data);
-          { const t = stripUnknownFields(line); if (t) rendered.push(t); }
-        }
-
-        if (rendered.length) {
-          outputArray.push(`\n${relType} (${count} items):`, ...rendered);
-        } else if (count) {
-          outputArray.push(`\n${relType}: ${count} item(s), no detail returned`);
-        }
+        outputArray.push(
+          ...renderRelationshipGroup(relType, relData, formatRelationshipData)
+        );
       }
     }
 
