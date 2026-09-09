@@ -1,0 +1,47 @@
+{
+    "name": "nvd-cve-mcp-server",
+    "version": "1.1.0",
+    "description": "MCP server for searching and retrieving CVE vulnerability information from NVD",
+    "type": "module",
+    "main": "src/index.js",
+    "bin": {
+        "nvd-cve-mcp-server": "src/index.js"
+    },
+    "scripts": {
+        "start": "node src/index.js",
+        "dev": "node --watch src/index.js"
+    },
+    "keywords": [
+        "mcp",
+        "cve",
+        "nvd",
+        "security",
+        "vulnerability",
+        "model-context-protocol",
+        "mcp-server"
+    ],
+    "author": "0x4hm3d",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/0x4hm3d/nvd-cve-mcp-server.git"
+    },
+    "bugs": {
+        "url": "https://github.com/0x4hm3d/nvd-cve-mcp-server/issues"
+    },
+    "homepage": "https://github.com/0x4hm3d/nvd-cve-mcp-server#readme",
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "files": [
+        "src/",
+        "README.md",
+        "USAGE_GUIDE.md",
+        "logo.png"
+    ],
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "^1.24.0",
+        "axios": "^1.18.0",
+        "cheerio": "^1.0.0"
+    }
+}
