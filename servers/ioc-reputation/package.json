@@ -1,5 +1,5 @@
 {
-  "name": "@burtthecoder/mcp-virustotal",
+  "name": "@socis/mcp-ioc-reputation",
   "mcpName": "io.github.BurtTheCoder/virustotal",
   "version": "1.0.25",
   "description": "MCP server for VirusTotal API integration",
@@ -26,14 +26,12 @@
     "virustotal",
     "security"
   ],
-  "author": "BurtTheCoder",
+  "author": "SOCIS",
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BurtTheCoder/mcp-virustotal.git"
+    "url": "https://github.com/socisio/socis-mcp-servers.git",
+    "directory": "servers/ioc-reputation"
   },
   "dependencies": {
     "axios": ">=1.4.0 <1.14.1",

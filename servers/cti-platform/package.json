@@ -1,5 +1,5 @@
 {
-  "name": "opencti-server",
+  "name": "@socis/mcp-cti-platform",
   "version": "0.1.0",
   "description": "A Model Context Protocol server",
   "private": true,
@@ -23,5 +23,11 @@
   "devDependencies": {
     "@types/node": "^20.11.24",
     "typescript": "^5.3.3"
+  },
+  "author": "SOCIS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/socisio/socis-mcp-servers.git",
+    "directory": "servers/cti-platform"
   }
 }

@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "@burtthecoder/mcp-shodan",
+  "name": "@socis/mcp-attack-surface",
   "version": "1.0.27",
   "description": "A Model Context Protocol server for Shodan API queries.",
   "mcpName": "io.github.BurtTheCoder/shodan",
@@ -27,11 +27,12 @@
     "README.md",
     "LICENSE"
   ],
-  "author": "BurtTheCoder",
+  "author": "SOCIS",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BurtTheCoder/mcp-shodan.git"
+    "url": "https://github.com/socisio/socis-mcp-servers.git",
+    "directory": "servers/attack-surface"
   },
   "keywords": [
     "mcp",
@@ -43,9 +44,5 @@
     "security-tools",
     "shodan-api",
     "shodan-integraton"
-  ],
-  "bugs": {
-    "url": "https://github.com/BurtTheCoder/mcp-shodan/issues"
-  },
-  "homepage": "https://github.com/BurtTheCoder/mcp-shodan#readme"
+  ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "mcp-threatintel-server",
+  "name": "@socis/mcp-threat-intel",
   "version": "1.0.3",
   "mcpName": "io.github.aplaceforallmystuff/mcp-threatintel",
   "description": "MCP server for unified threat intelligence - AlienVault OTX, AbuseIPDB, GreyNoise, and abuse.ch feeds",
@@ -38,11 +38,7 @@
     "feodo",
     "ioc"
   ],
-  "author": "Jim Christian",
-  "homepage": "https://github.com/aplaceforallmystuff/mcp-threatintel#readme",
-  "bugs": {
-    "url": "https://github.com/aplaceforallmystuff/mcp-threatintel/issues"
-  },
+  "author": "SOCIS",
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0"
@@ -56,6 +52,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aplaceforallmystuff/mcp-threatintel.git"
+    "url": "https://github.com/socisio/socis-mcp-servers.git",
+    "directory": "servers/threat-intel"
   }
 }
