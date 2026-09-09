@@ -88,7 +88,12 @@ export function formatRelationshipData(relType: string, item: any): string {
       if (attrs.validity?.not_before) certInfo.push(`Valid From: ${formatDateTime(new Date(attrs.validity.not_before).getTime() / 1000)}`);
       if (attrs.validity?.not_after) certInfo.push(`Valid Until: ${formatDateTime(new Date(attrs.validity.not_after).getTime() / 1000)}`);
       if (attrs.serial_number) certInfo.push(`Serial: ${attrs.serial_number}`);
-      return `  • SSL Certificate${certInfo.length ? '\n    ' + certInfo.join('\n    ') : ''}`;
+      // VirusTotal omits relationship attributes unless explicitly requested,
+      // so certInfo is frequently empty — and this printed "• SSL Certificate"
+      // once per item with no information at all, twenty times for one IP.
+      // A count is honest and short; a list of placeholders is neither.
+      if (!certInfo.length) return '';
+      return `  • SSL Certificate\n    ${certInfo.join('\n    ')}`;
 
     case 'resolutions':
       return `  • Host: ${attrs.host_name || 'Unknown'}
@@ -236,14 +241,26 @@ export function formatIpResults(data: IpData): FormattedResult {
       for (const [relType, relData] of Object.entries(data.relationships)) {
         const count = relData.meta?.count || (Array.isArray(relData.data) ? relData.data.length : 1);
         
-        outputArray.push(`\n${relType} (${count} items):`);
-        
+        // Render first, then decide on the header. VirusTotal omits
+        // relationship attributes unless asked for them, so a relationship can
+        // report 20 items and render nothing — which used to print a count
+        // followed by twenty bare "• SSL Certificate" lines. Say the items
+        // exist without detail instead of padding the output.
+        const rendered: string[] = [];
         if (Array.isArray(relData.data)) {
           relData.data.forEach(item => {
-            outputArray.push(formatRelationshipData(relType, item));
+            const line = formatRelationshipData(relType, item);
+            if (line) rendered.push(line);
           });
         } else if (relData.data) {
-          outputArray.push(formatRelationshipData(relType, relData.data));
+          const line = formatRelationshipData(relType, relData.data);
+          if (line) rendered.push(line);
+        }
+
+        if (rendered.length) {
+          outputArray.push(`\n${relType} (${count} items):`, ...rendered);
+        } else if (count) {
+          outputArray.push(`\n${relType}: ${count} item(s), no detail returned`);
         }
       }
     }
