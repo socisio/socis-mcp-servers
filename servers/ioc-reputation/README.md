@@ -1,7 +1,7 @@
 # VirusTotal MCP Server
 
 [![MCP Registry](https://img.shields.io/badge/MCP-Registry-blue)](https://registry.modelcontextprotocol.io)
-[![smithery badge](https://smithery.ai/badge/@socis/mcp-virustotal)](https://smithery.ai/server/@socis/mcp-virustotal)
+[![smithery badge](https://smithery.ai/badge/@socis/socis-mcp-ioc-reputation)](https://smithery.ai/server/@socis/socis-mcp-ioc-reputation)
 
 A Model Context Protocol (MCP) server for querying the [VirusTotal API](https://www.virustotal.com/). This server provides comprehensive security analysis tools with automatic relationship data fetching. It integrates seamlessly with MCP-compatible applications like [Claude Desktop](https://claude.ai).
 
@@ -9,32 +9,32 @@ A Model Context Protocol (MCP) server for querying the [VirusTotal API](https://
 
 ### Claude Code
 ```bash
-claude mcp add --transport stdio --env VIRUSTOTAL_API_KEY=your-key virustotal -- npx -y @socis/mcp-virustotal
+claude mcp add --transport stdio --env VIRUSTOTAL_API_KEY=your-key virustotal -- npx -y @socis/socis-mcp-ioc-reputation
 ```
 
 ### Codex CLI
 ```bash
-codex mcp add virustotal --env VIRUSTOTAL_API_KEY=your-key -- npx -y @socis/mcp-virustotal
+codex mcp add virustotal --env VIRUSTOTAL_API_KEY=your-key -- npx -y @socis/socis-mcp-ioc-reputation
 ```
 
 ### Gemini CLI
 ```bash
-gemini mcp add -e VIRUSTOTAL_API_KEY=your-key virustotal npx -y @socis/mcp-virustotal
+gemini mcp add -e VIRUSTOTAL_API_KEY=your-key virustotal npx -y @socis/socis-mcp-ioc-reputation
 ```
 
 ### Installing via Smithery
 
-To install VirusTotal Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@socis/mcp-virustotal):
+To install VirusTotal Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@socis/socis-mcp-ioc-reputation):
 
 ```bash
-npx -y @smithery/cli install @socis/mcp-virustotal --client claude
+npx -y @smithery/cli install @socis/socis-mcp-ioc-reputation --client claude
 ```
 
 ### Installing Manually
 
 1. Install the server globally via npm:
 ```bash
-npm install -g @socis/mcp-virustotal
+npm install -g @socis/socis-mcp-ioc-reputation
 ```
 
 2. Add to your Claude Desktop configuration file:
@@ -42,7 +42,7 @@ npm install -g @socis/mcp-virustotal
 {
   "mcpServers": {
     "virustotal": {
-      "command": "mcp-virustotal",
+      "command": "socis-mcp-ioc-reputation",
       "env": {
         "VIRUSTOTAL_API_KEY": "your-virustotal-api-key"
       }
@@ -63,7 +63,7 @@ To use this MCP server in VS Code with GitHub Copilot:
 
 1. Install the server globally via npm:
 ```bash
-npm install -g @socis/mcp-virustotal
+npm install -g @socis/socis-mcp-ioc-reputation
 ```
 
 2. Create or update your VS Code MCP configuration file at:
@@ -75,7 +75,7 @@ npm install -g @socis/mcp-virustotal
 {
   "servers": {
     "virustotal": {
-      "command": "mcp-virustotal",
+      "command": "socis-mcp-ioc-reputation",
       "env": {
         "VIRUSTOTAL_API_KEY": "your-virustotal-api-key"
       }
@@ -95,7 +95,7 @@ If you prefer to run from source or need to modify the code:
 1. Clone and build:
 ```bash
 git clone <repository_url>
-cd mcp-virustotal
+cd socis-mcp-ioc-reputation
 npm install
 npm run build
 ```
@@ -106,7 +106,7 @@ npm run build
   "mcpServers": {
     "virustotal": {
       "command": "node",
-      "args": ["/absolute/path/to/mcp-virustotal/build/index.js"],
+      "args": ["/absolute/path/to/socis-mcp-ioc-reputation/build/index.js"],
       "env": {
         "VIRUSTOTAL_API_KEY": "your-virustotal-api-key"
       }
@@ -139,11 +139,11 @@ MCP_TRANSPORT=httpStream MCP_PORT=3000 VIRUSTOTAL_API_KEY=your-key node build/in
 ### Docker with HTTP Streaming
 
 ```bash
-docker build -t mcp-virustotal .
+docker build -t socis-mcp-ioc-reputation .
 docker run -p 3000:3000 \
   -e VIRUSTOTAL_API_KEY=your-key \
   -e MCP_TRANSPORT=httpStream \
-  mcp-virustotal
+  socis-mcp-ioc-reputation
 ```
 
 The server exposes a health check endpoint at `/health` when running in HTTP streaming mode.
@@ -267,7 +267,7 @@ The server exposes a health check endpoint at `/health` when running in HTTP str
 
 If you see "Wrong API key" errors:
 
-1. Check the log file at `/tmp/mcp-virustotal-server.log` (on macOS) for API key status
+1. Check the log file at `/tmp/socis-mcp-ioc-reputation-server.log` (on macOS) for API key status
 2. Verify your API key:
    - Should be a valid VirusTotal API key (usually 64 characters)
    - No extra spaces or quotes around the key

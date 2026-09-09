@@ -3,14 +3,14 @@
   "name": "io.github.SOCIS/shodan",
   "description": "MCP server for Shodan API — device search, IP lookup, DNS, and CVE/CPE queries.",
   "repository": {
-    "url": "https://github.com/SOCIS/mcp-shodan",
+    "url": "https://github.com/SOCIS/socis-mcp-attack-surface",
     "source": "github"
   },
   "version": "1.0.22",
   "packages": [
     {
       "registryType": "npm",
-      "identifier": "@socis/mcp-shodan",
+      "identifier": "@socis/socis-mcp-attack-surface",
       "version": "1.0.22",
       "transport": {
         "type": "stdio"

@@ -6,7 +6,7 @@
   "mcpName": "io.github.SOCIS/shodan",
   "main": "build/index.js",
   "bin": {
-    "mcp-shodan": "build/index.js"
+    "socis-mcp-attack-surface": "build/index.js"
   },
   "scripts": {
     "build": "tsc && chmod +x build/index.js",
@@ -37,7 +37,7 @@
   "keywords": [
     "mcp",
     "shodan",
-    "mcp-shodan",
+    "socis-mcp-attack-surface",
     "cybersecurity",
     "agents",
     "network-reconnaissance",

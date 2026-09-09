@@ -1,6 +1,6 @@
 # Shodan MCP Server
 
-[![smithery badge](https://smithery.ai/badge/@socis/mcp-shodan)](https://smithery.ai/server/@socis/mcp-shodan)
+[![smithery badge](https://smithery.ai/badge/@socis/socis-mcp-attack-surface)](https://smithery.ai/server/@socis/socis-mcp-attack-surface)
 [![MCP Registry](https://img.shields.io/badge/MCP-Registry-blue)](https://registry.modelcontextprotocol.io)
 
 A Model Context Protocol (MCP) server for querying the [Shodan API](https://shodan.io) and [Shodan CVEDB](https://cvedb.shodan.io). This server provides comprehensive access to Shodan's network intelligence and security services, including IP reconnaissance, DNS operations, vulnerability tracking, and device discovery. All tools provide structured, formatted output for easy analysis and integration.
@@ -10,33 +10,33 @@ A Model Context Protocol (MCP) server for querying the [Shodan API](https://shod
 ### Installing via Claude Code
 
 ```bash
-claude mcp add --transport stdio --env SHODAN_API_KEY=your-shodan-api-key shodan -- npx -y @socis/mcp-shodan
+claude mcp add --transport stdio --env SHODAN_API_KEY=your-shodan-api-key shodan -- npx -y @socis/socis-mcp-attack-surface
 ```
 
 ### Installing via Codex CLI
 
 ```bash
-codex mcp add shodan --env SHODAN_API_KEY=your-shodan-api-key -- npx -y @socis/mcp-shodan
+codex mcp add shodan --env SHODAN_API_KEY=your-shodan-api-key -- npx -y @socis/socis-mcp-attack-surface
 ```
 
 ### Installing via Gemini CLI
 
 ```bash
-gemini mcp add -e SHODAN_API_KEY=your-shodan-api-key shodan npx -y @socis/mcp-shodan
+gemini mcp add -e SHODAN_API_KEY=your-shodan-api-key shodan npx -y @socis/socis-mcp-attack-surface
 ```
 
 ### Installing via Smithery
 
-To install Shodan Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@socis/mcp-shodan):
+To install Shodan Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@socis/socis-mcp-attack-surface):
 
 ```bash
-npx -y @smithery/cli install @socis/mcp-shodan --client claude
+npx -y @smithery/cli install @socis/socis-mcp-attack-surface --client claude
 ```
 
 ### Installing Manually
 1. Install the server globally via npm:
 ```bash
-npm install -g @socis/mcp-shodan
+npm install -g @socis/socis-mcp-attack-surface
 ```
 
 2. Add to your Claude Desktop configuration file:
@@ -44,7 +44,7 @@ npm install -g @socis/mcp-shodan
 {
   "mcpServers": {
     "shodan": {
-      "command": "mcp-shodan",
+      "command": "socis-mcp-attack-surface",
       "env": {
         "SHODAN_API_KEY": "your-shodan-api-key"
       }
@@ -65,8 +65,8 @@ If you prefer to run from source or need to modify the code:
 
 1. Clone and build:
 ```bash
-git clone https://github.com/SOCIS/mcp-shodan.git
-cd mcp-shodan
+git clone https://github.com/SOCIS/socis-mcp-attack-surface.git
+cd socis-mcp-attack-surface
 npm install
 npm run build
 ```
@@ -77,7 +77,7 @@ npm run build
   "mcpServers": {
     "shodan": {
       "command": "node",
-      "args": ["/absolute/path/to/mcp-shodan/build/index.js"],
+      "args": ["/absolute/path/to/socis-mcp-attack-surface/build/index.js"],
       "env": {
         "SHODAN_API_KEY": "your-shodan-api-key"
       }
@@ -225,7 +225,7 @@ If you see API key related errors (e.g., "Request failed with status code 401"):
       {
         "mcpServers": {
           "shodan": {
-            "command": "mcp-shodan",
+            "command": "socis-mcp-attack-surface",
             "env": {
               "SHODAN_API_KEY": "your-actual-api-key-here"
             }

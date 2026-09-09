@@ -265,5 +265,5 @@ MIT - see [LICENSE](LICENSE) for details.
 ## Related Projects
 
 For additional threat intelligence capabilities, consider:
-- [@socis/mcp-shodan](https://www.npmjs.com/package/@socis/mcp-shodan) - Shodan internet scanning
-- [@socis/mcp-virustotal](https://www.npmjs.com/package/@socis/mcp-virustotal) - VirusTotal malware analysis
+- [@socis/socis-mcp-attack-surface](https://www.npmjs.com/package/@socis/socis-mcp-attack-surface) - Shodan internet scanning
+- [@socis/socis-mcp-ioc-reputation](https://www.npmjs.com/package/@socis/socis-mcp-ioc-reputation) - VirusTotal malware analysis

@@ -31,7 +31,7 @@ const NVD_WEB_BASE = 'https://nvd.nist.gov/vuln/detail';
 // Create MCP server
 const server = new Server(
     {
-        name: 'nvd-cve-mcp-server',
+        name: 'socis-mcp-nvd',
         version: '1.3.0',
     },
     {

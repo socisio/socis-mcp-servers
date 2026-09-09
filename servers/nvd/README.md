@@ -1,6 +1,6 @@
 # nvd
 
-First-party. Consolidated from 0x4hm3d/nvd-cve-mcp-server so every server
+First-party. Consolidated from socisio/socis-mcp-nvd so every server
 SOCIS ships lives in one place.
 
 No UPSTREAM.md or PATCHES.md: there is no upstream to track against, and

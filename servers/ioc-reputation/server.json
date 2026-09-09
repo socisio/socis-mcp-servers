@@ -3,14 +3,14 @@
   "name": "io.github.SOCIS/virustotal",
   "description": "MCP server for querying VirusTotal API with comprehensive security analysis tools.",
   "repository": {
-    "url": "https://github.com/SOCIS/mcp-virustotal",
+    "url": "https://github.com/SOCIS/socis-mcp-ioc-reputation",
     "source": "github"
   },
   "version": "1.0.25",
   "packages": [
     {
       "registryType": "npm",
-      "identifier": "@socis/mcp-virustotal",
+      "identifier": "@socis/socis-mcp-ioc-reputation",
       "version": "1.0.25",
       "transport": {
         "type": "stdio"

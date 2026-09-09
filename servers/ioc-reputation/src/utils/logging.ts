@@ -24,7 +24,7 @@ function ensureLogDirectory() {
       const tmpDir = process.platform === 'win32' 
         ? process.env.TEMP || process.env.TMP || 'C:\\Windows\\Temp'
         : '/tmp';
-      const fallbackDir = path.join(tmpDir, 'mcp-virustotal-logs');
+      const fallbackDir = path.join(tmpDir, 'socis-mcp-ioc-reputation-logs');
       if (!fs.existsSync(fallbackDir)) {
         fs.mkdirSync(fallbackDir, { recursive: true });
       }
@@ -39,9 +39,9 @@ function ensureLogDirectory() {
 // Initialize logging
 const logDir = ensureLogDirectory();
 const logFilePath = logDir === true 
-  ? path.join(logsDir, "mcp-virustotal-server.log")
+  ? path.join(logsDir, "socis-mcp-ioc-reputation-server.log")
   : logDir 
-    ? path.join(logDir, "mcp-virustotal-server.log")
+    ? path.join(logDir, "socis-mcp-ioc-reputation-server.log")
     : null;
 
 export function logToFile(message: string) {

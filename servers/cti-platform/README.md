@@ -49,10 +49,10 @@ npx -y @smithery/cli install opencti-server --client claude
 ### Manual Installation
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/opencti-mcp-server.git
+git clone https://github.com/yourusername/socis-mcp-cti-platform-server.git
 
 # Install dependencies
-cd opencti-mcp-server
+cd socis-mcp-cti-platform-server
 npm install
 
 # Build the project

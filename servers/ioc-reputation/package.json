@@ -6,7 +6,7 @@
   "type": "module",
   "main": "build/index.js",
   "bin": {
-    "mcp-virustotal": "build/index.js"
+    "socis-mcp-ioc-reputation": "build/index.js"
   },
   "files": [
     "build",

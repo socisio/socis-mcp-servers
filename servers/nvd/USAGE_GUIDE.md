@@ -6,7 +6,7 @@
 
 1. **Install Dependencies**
 ```bash
-cd nvd-cve-mcp-server
+cd socis-mcp-nvd
 npm install
 ```
 
@@ -22,7 +22,7 @@ Add the following configuration:
   "mcpServers": {
     "nvd-cve": {
       "command": "npx",
-      "args": ["-y", "nvd-cve-mcp-server"]
+      "args": ["-y", "socis-mcp-nvd"]
     }
   }
 }
