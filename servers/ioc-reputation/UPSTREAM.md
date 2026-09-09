@@ -1,14 +1,14 @@
 # Upstream — ioc-reputation
 
-- Repository:
-- Forked at SHA:
-- Date forked:
-- Licence: MIT
+- Repository: https://github.com/w0h1v/mcp-virustotal
+- Forked at SHA: 364ce0d0fb505644c52ed1a83c4f3d5f10abee1f
+- Date forked: 2026-09-09
+- Licence: MIT (preserved unmodified in LICENSE)
 
 ## Why forked
 
-<!-- The specific defect or gap. "For control" is not a reason. -->
+Consolidated so VirusTotal enrichment can be fixed on SOCIS's schedule.
 
 ## Pulling upstream changes
 
-    git subtree pull --prefix=servers/ioc-reputation <upstream-url> <ref> --squash
+    git subtree pull --prefix=servers/ioc-reputation https://github.com/w0h1v/mcp-virustotal.git <ref> --squash
