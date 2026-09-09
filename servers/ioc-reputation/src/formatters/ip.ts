@@ -246,15 +246,29 @@ export function formatIpResults(data: IpData): FormattedResult {
         // report 20 items and render nothing — which used to print a count
         // followed by twenty bare "• SSL Certificate" lines. Say the items
         // exist without detail instead of padding the output.
+        // A rendered line whose every field fell back to 'Unknown' carries no
+        // information — the per-type branches build one from optional
+        // attributes VirusTotal did not return, so 20 items become 20
+        // identical stanzas. Patching one branch (certificates) missed
+        // communicating_files and resolutions, which fail the same way.
+        const hasContent = (line: string) =>
+          line.replace(/^\s*[•\-]\s*/gm, "")
+              .split("\n")
+              .some(l => {
+                const v = l.includes(":") ? l.split(":").slice(1).join(":") : l;
+                const t = v.trim();
+                return t !== "" && t !== "Unknown";
+              });
+
         const rendered: string[] = [];
         if (Array.isArray(relData.data)) {
           relData.data.forEach(item => {
             const line = formatRelationshipData(relType, item);
-            if (line) rendered.push(line);
+            if (line && hasContent(line)) rendered.push(line);
           });
         } else if (relData.data) {
           const line = formatRelationshipData(relType, relData.data);
-          if (line) rendered.push(line);
+          if (line && hasContent(line)) rendered.push(line);
         }
 
         if (rendered.length) {
