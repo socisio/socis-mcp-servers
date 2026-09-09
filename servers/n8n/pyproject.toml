@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "socis-n8n-mcp"
 version = "0.1.0"
-description = "Local stdio MCP bridge for managing n8n from Hermes Agent"
+description = "Local stdio MCP bridge for managing n8n from SOCIS Agent"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }

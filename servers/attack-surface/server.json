@@ -1,16 +1,16 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.BurtTheCoder/shodan",
+  "name": "io.github.SOCIS/shodan",
   "description": "MCP server for Shodan API — device search, IP lookup, DNS, and CVE/CPE queries.",
   "repository": {
-    "url": "https://github.com/BurtTheCoder/mcp-shodan",
+    "url": "https://github.com/SOCIS/mcp-shodan",
     "source": "github"
   },
   "version": "1.0.22",
   "packages": [
     {
       "registryType": "npm",
-      "identifier": "@burtthecoder/mcp-shodan",
+      "identifier": "@socis/mcp-shodan",
       "version": "1.0.22",
       "transport": {
         "type": "stdio"

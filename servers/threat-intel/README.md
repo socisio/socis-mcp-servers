@@ -1,7 +1,7 @@
 # MCP Threat Intel Server
 
-[![npm version](https://img.shields.io/npm/v/mcp-threatintel-server.svg)](https://www.npmjs.com/package/mcp-threatintel-server)
-[![CI](https://github.com/aplaceforallmystuff/mcp-threatintel/actions/workflows/ci.yml/badge.svg)](https://github.com/aplaceforallmystuff/mcp-threatintel/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/mcp-threat-intel-server.svg)](https://www.npmjs.com/package/mcp-threat-intel-server)
+[![CI](https://github.com/socisio/mcp-threat-intel/actions/workflows/ci.yml/badge.svg)](https://github.com/socisio/mcp-threat-intel/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![MCP](https://img.shields.io/badge/MCP-Compatible-blue)](https://modelcontextprotocol.io)
 
@@ -37,20 +37,20 @@ If you're doing security research, incident response, or threat analysis, this M
 ### Using npm (Recommended)
 
 ```bash
-npx mcp-threatintel-server
+npx mcp-threat-intel-server
 ```
 
 Or install globally:
 
 ```bash
-npm install -g mcp-threatintel-server
+npm install -g mcp-threat-intel-server
 ```
 
 ### From Source
 
 ```bash
-git clone https://github.com/aplaceforallmystuff/mcp-threatintel.git
-cd mcp-threatintel
+git clone https://github.com/socisio/mcp-threat-intel.git
+cd mcp-threat-intel
 npm install
 npm run build
 ```
@@ -69,7 +69,7 @@ Add to your Claude Desktop config file:
   "mcpServers": {
     "threatintel": {
       "command": "npx",
-      "args": ["-y", "mcp-threatintel-server"],
+      "args": ["-y", "mcp-threat-intel-server"],
       "env": {
         "OTX_API_KEY": "your-otx-api-key",
         "ABUSEIPDB_API_KEY": "your-abuseipdb-api-key",
@@ -90,7 +90,7 @@ Add to `~/.claude.json`:
   "mcpServers": {
     "threatintel": {
       "command": "npx",
-      "args": ["-y", "mcp-threatintel-server"],
+      "args": ["-y", "mcp-threat-intel-server"],
       "env": {
         "OTX_API_KEY": "your-otx-api-key",
         "ABUSEIPDB_API_KEY": "your-abuseipdb-api-key",
@@ -260,10 +260,10 @@ MIT - see [LICENSE](LICENSE) for details.
 
 - [Model Context Protocol](https://modelcontextprotocol.io)
 - [MCP Specification](https://spec.modelcontextprotocol.io)
-- [GitHub Repository](https://github.com/aplaceforallmystuff/mcp-threatintel)
+- [GitHub Repository](https://github.com/socisio/mcp-threat-intel)
 
 ## Related Projects
 
 For additional threat intelligence capabilities, consider:
-- [@burtthecoder/mcp-shodan](https://www.npmjs.com/package/@burtthecoder/mcp-shodan) - Shodan internet scanning
-- [@burtthecoder/mcp-virustotal](https://www.npmjs.com/package/@burtthecoder/mcp-virustotal) - VirusTotal malware analysis
+- [@socis/mcp-shodan](https://www.npmjs.com/package/@socis/mcp-shodan) - Shodan internet scanning
+- [@socis/mcp-virustotal](https://www.npmjs.com/package/@socis/mcp-virustotal) - VirusTotal malware analysis

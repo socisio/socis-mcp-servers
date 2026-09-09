@@ -1,13 +1,13 @@
 {
   "name": "@socis/mcp-threat-intel",
   "version": "1.0.3",
-  "mcpName": "io.github.aplaceforallmystuff/mcp-threatintel",
+  "mcpName": "io.github.socisio/mcp-threat-intel",
   "description": "MCP server for unified threat intelligence - AlienVault OTX, AbuseIPDB, GreyNoise, and abuse.ch feeds",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "bin": {
-    "mcp-threatintel": "dist/index.js"
+    "mcp-threat-intel": "dist/index.js"
   },
   "files": [
     "dist"

@@ -1,7 +1,7 @@
 # VirusTotal MCP Server
 
 [![MCP Registry](https://img.shields.io/badge/MCP-Registry-blue)](https://registry.modelcontextprotocol.io)
-[![smithery badge](https://smithery.ai/badge/@burtthecoder/mcp-virustotal)](https://smithery.ai/server/@burtthecoder/mcp-virustotal)
+[![smithery badge](https://smithery.ai/badge/@socis/mcp-virustotal)](https://smithery.ai/server/@socis/mcp-virustotal)
 
 A Model Context Protocol (MCP) server for querying the [VirusTotal API](https://www.virustotal.com/). This server provides comprehensive security analysis tools with automatic relationship data fetching. It integrates seamlessly with MCP-compatible applications like [Claude Desktop](https://claude.ai).
 
@@ -9,32 +9,32 @@ A Model Context Protocol (MCP) server for querying the [VirusTotal API](https://
 
 ### Claude Code
 ```bash
-claude mcp add --transport stdio --env VIRUSTOTAL_API_KEY=your-key virustotal -- npx -y @burtthecoder/mcp-virustotal
+claude mcp add --transport stdio --env VIRUSTOTAL_API_KEY=your-key virustotal -- npx -y @socis/mcp-virustotal
 ```
 
 ### Codex CLI
 ```bash
-codex mcp add virustotal --env VIRUSTOTAL_API_KEY=your-key -- npx -y @burtthecoder/mcp-virustotal
+codex mcp add virustotal --env VIRUSTOTAL_API_KEY=your-key -- npx -y @socis/mcp-virustotal
 ```
 
 ### Gemini CLI
 ```bash
-gemini mcp add -e VIRUSTOTAL_API_KEY=your-key virustotal npx -y @burtthecoder/mcp-virustotal
+gemini mcp add -e VIRUSTOTAL_API_KEY=your-key virustotal npx -y @socis/mcp-virustotal
 ```
 
 ### Installing via Smithery
 
-To install VirusTotal Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@burtthecoder/mcp-virustotal):
+To install VirusTotal Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@socis/mcp-virustotal):
 
 ```bash
-npx -y @smithery/cli install @burtthecoder/mcp-virustotal --client claude
+npx -y @smithery/cli install @socis/mcp-virustotal --client claude
 ```
 
 ### Installing Manually
 
 1. Install the server globally via npm:
 ```bash
-npm install -g @burtthecoder/mcp-virustotal
+npm install -g @socis/mcp-virustotal
 ```
 
 2. Add to your Claude Desktop configuration file:
@@ -63,7 +63,7 @@ To use this MCP server in VS Code with GitHub Copilot:
 
 1. Install the server globally via npm:
 ```bash
-npm install -g @burtthecoder/mcp-virustotal
+npm install -g @socis/mcp-virustotal
 ```
 
 2. Create or update your VS Code MCP configuration file at:

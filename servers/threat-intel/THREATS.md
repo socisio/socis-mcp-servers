@@ -18,7 +18,7 @@ is "permanently disabled" ([Hex-Evo/PREA#3](https://github.com/Hex-Evo/PREA/issu
 Claim unverified. SDK remains published.
 
 **First observed on this repo:** 2026-02-14 via
-[mcp-threatintel#1](https://github.com/aplaceforallmystuff/mcp-threatintel/issues/1).
+[mcp-threat-intel#1](https://github.com/socisio/mcp-threat-intel/issues/1).
 
 ### Target selection
 

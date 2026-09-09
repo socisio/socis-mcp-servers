@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Local stdio MCP bridge for n8n.
 
-This server lets Hermes Agent manage an n8n instance through n8n's public API
+This server lets SOCIS Agent manage an n8n instance through n8n's public API
 without exposing your API key or opening a network listener.
 
 Transport: stdio only.

@@ -1,4 +1,4 @@
-# AGENTS.md - mcp-threatintel
+# AGENTS.md - mcp-threat-intel
 
 MCP server for unified threat intelligence across multiple sources (OTX, AbuseIPDB, GreyNoise, abuse.ch).
 

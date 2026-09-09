@@ -1,16 +1,16 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
-  "name": "io.github.aplaceforallmystuff/mcp-threatintel",
+  "name": "io.github.socisio/mcp-threat-intel",
   "description": "Unified threat intel - OTX, AbuseIPDB, GreyNoise, abuse.ch, Feodo Tracker",
   "repository": {
-    "url": "https://github.com/aplaceforallmystuff/mcp-threatintel",
+    "url": "https://github.com/socisio/mcp-threat-intel",
     "source": "github"
   },
   "version": "1.0.3",
   "packages": [
     {
       "registryType": "npm",
-      "identifier": "mcp-threatintel-server",
+      "identifier": "mcp-threat-intel-server",
       "version": "1.0.3",
       "transport": {
         "type": "stdio"

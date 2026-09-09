@@ -363,7 +363,7 @@ TOOLS.push({
 // Create server instance
 const server = new Server(
   {
-    name: "mcp-threatintel",
+    name: "mcp-threat-intel",
     version: "1.0.0",
   },
   {

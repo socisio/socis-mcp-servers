@@ -1,6 +1,6 @@
 # Shodan MCP Server
 
-[![smithery badge](https://smithery.ai/badge/@burtthecoder/mcp-shodan)](https://smithery.ai/server/@burtthecoder/mcp-shodan)
+[![smithery badge](https://smithery.ai/badge/@socis/mcp-shodan)](https://smithery.ai/server/@socis/mcp-shodan)
 [![MCP Registry](https://img.shields.io/badge/MCP-Registry-blue)](https://registry.modelcontextprotocol.io)
 
 A Model Context Protocol (MCP) server for querying the [Shodan API](https://shodan.io) and [Shodan CVEDB](https://cvedb.shodan.io). This server provides comprehensive access to Shodan's network intelligence and security services, including IP reconnaissance, DNS operations, vulnerability tracking, and device discovery. All tools provide structured, formatted output for easy analysis and integration.
@@ -10,33 +10,33 @@ A Model Context Protocol (MCP) server for querying the [Shodan API](https://shod
 ### Installing via Claude Code
 
 ```bash
-claude mcp add --transport stdio --env SHODAN_API_KEY=your-shodan-api-key shodan -- npx -y @burtthecoder/mcp-shodan
+claude mcp add --transport stdio --env SHODAN_API_KEY=your-shodan-api-key shodan -- npx -y @socis/mcp-shodan
 ```
 
 ### Installing via Codex CLI
 
 ```bash
-codex mcp add shodan --env SHODAN_API_KEY=your-shodan-api-key -- npx -y @burtthecoder/mcp-shodan
+codex mcp add shodan --env SHODAN_API_KEY=your-shodan-api-key -- npx -y @socis/mcp-shodan
 ```
 
 ### Installing via Gemini CLI
 
 ```bash
-gemini mcp add -e SHODAN_API_KEY=your-shodan-api-key shodan npx -y @burtthecoder/mcp-shodan
+gemini mcp add -e SHODAN_API_KEY=your-shodan-api-key shodan npx -y @socis/mcp-shodan
 ```
 
 ### Installing via Smithery
 
-To install Shodan Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@burtthecoder/mcp-shodan):
+To install Shodan Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@socis/mcp-shodan):
 
 ```bash
-npx -y @smithery/cli install @burtthecoder/mcp-shodan --client claude
+npx -y @smithery/cli install @socis/mcp-shodan --client claude
 ```
 
 ### Installing Manually
 1. Install the server globally via npm:
 ```bash
-npm install -g @burtthecoder/mcp-shodan
+npm install -g @socis/mcp-shodan
 ```
 
 2. Add to your Claude Desktop configuration file:
@@ -65,7 +65,7 @@ If you prefer to run from source or need to modify the code:
 
 1. Clone and build:
 ```bash
-git clone https://github.com/BurtTheCoder/mcp-shodan.git
+git clone https://github.com/SOCIS/mcp-shodan.git
 cd mcp-shodan
 npm install
 npm run build

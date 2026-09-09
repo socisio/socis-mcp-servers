@@ -1,8 +1,8 @@
-# Hermes n8n MCP
+# SOCIS n8n MCP
 
-Local stdio MCP bridge for managing n8n from Hermes Agent.
+Local stdio MCP bridge for managing n8n from SOCIS Agent.
 
-This is the sanitized public version of the bridge built for a production VPS. It gives Hermes n8n tools without exposing n8n over the public internet and without putting API keys in your Hermes config.
+This is the sanitized public version of the bridge built for a production VPS. It gives SOCIS n8n tools without exposing n8n over the public internet and without putting API keys in your SOCIS config.
 
 ## What it does
 
@@ -33,15 +33,15 @@ Exposes these MCP tools:
 ## Requirements
 
 - Python 3.10+
-- Hermes Agent with native MCP enabled
+- SOCIS Agent with native MCP enabled
 - n8n API key
-- n8n reachable from the machine running Hermes, usually `http://127.0.0.1:5678`
+- n8n reachable from the machine running SOCIS, usually `http://127.0.0.1:5678`
 
 ## Install
 
 ```bash
-git clone https://github.com/CyberSamuraiX/hermes-n8n-mcp.git
-cd hermes-n8n-mcp
+git clone https://github.com/socisio/socis-n8n-mcp.git
+cd socis-n8n-mcp
 python3 -m venv .venv
 . .venv/bin/activate
 pip install -r requirements.txt
@@ -84,16 +84,16 @@ chmod 600 ~/.config/n8n-mcp/env
 
 Replace `REPLACE_ME` locally. Do not commit the real file.
 
-## Hermes config
+## SOCIS config
 
-Add this to `~/.hermes/config.yaml`:
+Add this to `~/.socis/config.yaml`:
 
 ```yaml
 mcp_servers:
   n8n:
-    command: "/absolute/path/to/hermes-n8n-mcp/.venv/bin/python"
+    command: "/absolute/path/to/socis-n8n-mcp/.venv/bin/python"
     args:
-      - "/absolute/path/to/hermes-n8n-mcp/server.py"
+      - "/absolute/path/to/socis-n8n-mcp/server.py"
     env:
       N8N_MCP_ENV: "/absolute/path/to/.config/n8n-mcp/env"
     timeout: 120
@@ -102,7 +102,7 @@ mcp_servers:
       enabled: false
 ```
 
-Then reload MCP in Hermes:
+Then reload MCP in SOCIS:
 
 ```text
 /reload-mcp
@@ -111,20 +111,20 @@ Then reload MCP in Hermes:
 Or from shell:
 
 ```bash
-hermes mcp test n8n
+socis mcp test n8n
 ```
 
-## Smoke test outside Hermes
+## Smoke test outside SOCIS
 
 ```bash
 . .venv/bin/activate
 python -m py_compile server.py
-hermes mcp test n8n
+socis mcp test n8n
 ```
 
 ## Docker logs
 
-`container_logs` shells out to Docker. If the user running Hermes cannot access Docker, set:
+`container_logs` shells out to Docker. If the user running SOCIS cannot access Docker, set:
 
 ```text
 N8N_MCP_ALLOW_DOCKER_LOGS=false

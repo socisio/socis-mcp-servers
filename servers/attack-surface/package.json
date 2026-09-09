@@ -3,7 +3,7 @@
   "name": "@socis/mcp-attack-surface",
   "version": "1.0.27",
   "description": "A Model Context Protocol server for Shodan API queries.",
-  "mcpName": "io.github.BurtTheCoder/shodan",
+  "mcpName": "io.github.SOCIS/shodan",
   "main": "build/index.js",
   "bin": {
     "mcp-shodan": "build/index.js"
