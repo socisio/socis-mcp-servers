@@ -237,10 +237,32 @@ function formatCVEData(cve) {
         severity = cvss.baseSeverity;
     }
 
-    const references = cve.references?.slice(0, 5).map(ref => ({
-        url: ref.url,
-        source: ref.source || 'N/A'
-    })) || [];
+    // NVD tags references — Vendor Advisory, Patch, Exploit, Mitigation — and
+    // the old code discarded the tags then kept whichever five came first.
+    // For Log4Shell that surfaced five Packet Storm mirrors while Apache's own
+    // advisory and the patch link sat further down the list. Rank by what the
+    // reference IS, then cap; 5 was too few to reach a vendor advisory and the
+    // untruncated list runs to 60+ mailing-list mirrors.
+    const TAG_RANK = {
+        'Vendor Advisory': 0,
+        'Patch': 1,
+        'Mitigation': 2,
+        'Exploit': 3,
+        'Third Party Advisory': 4,
+        'US Government Resource': 5,
+    };
+    const rankOf = (ref) => Math.min(
+        ...(ref.tags?.length ? ref.tags.map(t => TAG_RANK[t] ?? 90) : [99])
+    );
+    const references = (cve.references || [])
+        .map((ref, i) => ({ ref, i, rank: rankOf(ref) }))
+        .sort((a, b) => a.rank - b.rank || a.i - b.i)   // stable within a rank
+        .slice(0, 15)
+        .map(({ ref }) => ({
+            url: ref.url,
+            source: ref.source || 'N/A',
+            tags: ref.tags || []
+        }));
 
     const cweId = cve.weaknesses?.[0]?.description?.[0]?.value || 'N/A';
 
@@ -297,8 +319,13 @@ function formatCVEMarkdown(cve) {
 
     if (cve.references && cve.references.length > 0) {
         markdown += `## 🔗Reference Links\n\n`;
-            cve.references.forEach((ref, index) => {
-            markdown += `${index + 1}. [${ref.source}](${ref.url})\n`;
+        // Label each link with what it IS, not who reported it. Using
+        // ref.source rendered five consecutive "security@apache.org" links for
+        // Log4Shell — the same text five times, telling the reader nothing
+        // about which one is the vendor advisory and which is a mirror.
+        cve.references.forEach((ref, index) => {
+            const label = ref.tags?.length ? ref.tags.join(', ') : ref.source;
+            markdown += `${index + 1}. **${label}** — <${ref.url}>\n`;
         });
         markdown += `\n`;
     }
