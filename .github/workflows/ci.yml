@@ -1,0 +1,26 @@
+name: CI
+on: [push, pull_request]
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        server: [threat-intel, ioc-reputation, attack-surface, cti-platform, n8n]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      # A server that does not build cannot be installed by the catalog —
+      # the manifest's bootstrap runs `npm ci && npm run build` verbatim.
+      - name: Build ${{ matrix.server }}
+        working-directory: servers/${{ matrix.server }}
+        run: |
+          [ -f package.json ] || { echo "not yet imported — skipping"; exit 0; }
+          npm ci
+          npm run build --if-present
+          npm test --if-present

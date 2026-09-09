@@ -1,0 +1,11 @@
+This product includes software developed by third parties, redistributed and
+modified under the MIT License. Original copyright notices are preserved in
+each server's LICENSE file.
+
+  servers/threat-intel     — aplaceforallmystuff/mcp-threatintel
+  servers/ioc-reputation   — w0h1v/mcp-virustotal
+  servers/attack-surface   — w0h1v/mcp-shodan
+  servers/cti-platform     — zxzinn/opencti-mcp
+  servers/n8n              — CyberSamuraiX/hermes-n8n-mcp
+
+Modifications by SOCIS are documented per server in PATCHES.md.
