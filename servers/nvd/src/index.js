@@ -338,8 +338,14 @@ function formatCVEMarkdown(cve) {
         // Log4Shell — the same text five times, telling the reader nothing
         // about which one is the vendor advisory and which is a mirror.
         cve.references.forEach((ref, index) => {
-            const label = ref.tags?.length ? ref.tags.join(', ') : ref.source;
-            markdown += `${index + 1}. **${label}** — <${ref.url}>\n`;
+            // Link text is the host — the reader scans for "apache.org" or
+            // "oracle.com", not for a 90-character packetstormsecurity path.
+            // Tags say what the link IS; the bare URL said neither.
+            let host;
+            try { host = new URL(ref.url).hostname.replace(/^www\./, ''); }
+            catch { host = ref.url; }
+            const tags = ref.tags?.length ? ` — _${ref.tags.join(', ')}_` : '';
+            markdown += `${index + 1}. [${host}](${ref.url})${tags}\n`;
         });
         markdown += `\n`;
     }
