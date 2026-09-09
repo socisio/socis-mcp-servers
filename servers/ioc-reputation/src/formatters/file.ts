@@ -334,14 +334,40 @@ export function formatFileResults(data: FileData): FormattedResult {
       for (const [relType, relData] of Object.entries(data.relationships)) {
         const count = relData.meta?.count || (Array.isArray(relData.data) ? relData.data.length : 1);
         
-        outputArray.push(`\n${relType} (${count} items):`);
-        
+        // Strip Unknown FIELDS, not whole stanzas. VirusTotal omits
+        // relationship attributes unless asked for them, so an entry renders a
+        // real id followed by "Type: Unknown / First Seen: Unknown". Filtering
+        // per stanza is not enough — the id counts as content, so the Unknown
+        // lines print anyway, 40 of them for one indicator. Same defect as
+        // ip.ts; this function is duplicated across three formatters.
+        const stripUnknownFields = (line: string): string => {
+          const kept = line.split("\n").filter(l => {
+            const i = l.indexOf(":");
+            if (i === -1) return l.trim() !== "";
+            const v = l.slice(i + 1).trim();
+            return v !== "" && v !== "Unknown";
+          });
+          const meaningful = kept.filter(
+            l => l.replace(/^\s*[•\-]\s*/, "").trim() !== ""
+          );
+          return meaningful.length ? kept.join("\n") : "";
+        };
+
+        const rendered: string[] = [];
         if (Array.isArray(relData.data)) {
           relData.data.forEach(item => {
-            outputArray.push(formatRelationshipData(relType, item));
+            const t = stripUnknownFields(formatRelationshipData(relType, item));
+            if (t) rendered.push(t);
           });
         } else if (relData.data) {
-          outputArray.push(formatRelationshipData(relType, relData.data));
+          const t = stripUnknownFields(formatRelationshipData(relType, relData.data));
+          if (t) rendered.push(t);
+        }
+
+        if (rendered.length) {
+          outputArray.push(`\n${relType} (${count} items):`, ...rendered);
+        } else if (count) {
+          outputArray.push(`\n${relType}: ${count} item(s), no detail returned`);
         }
       }
     }
