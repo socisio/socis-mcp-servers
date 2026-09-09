@@ -254,7 +254,21 @@ function formatCVEData(cve) {
     const rankOf = (ref) => Math.min(
         ...(ref.tags?.length ? ref.tags.map(t => TAG_RANK[t] ?? 90) : [99])
     );
-    const references = (cve.references || [])
+    // NVD lists the same URL once per CNA that submitted it, so the raw list
+    // carries duplicates. Ranking made them adjacent and obvious: Apache's
+    // advisory and Microsoft's MSRC post each appeared twice, spending 8 of 15
+    // slots on 4 unique links. Merge tags across duplicates rather than
+    // dropping one arbitrarily — the copies often carry different tags.
+    const byUrl = new Map();
+    for (const ref of cve.references || []) {
+        const seen = byUrl.get(ref.url);
+        if (seen) {
+            seen.tags = [...new Set([...(seen.tags || []), ...(ref.tags || [])])];
+        } else {
+            byUrl.set(ref.url, { ...ref, tags: [...(ref.tags || [])] });
+        }
+    }
+    const references = [...byUrl.values()]
         .map((ref, i) => ({ ref, i, rank: rankOf(ref) }))
         .sort((a, b) => a.rank - b.rank || a.i - b.i)   // stable within a rank
         .slice(0, 15)
