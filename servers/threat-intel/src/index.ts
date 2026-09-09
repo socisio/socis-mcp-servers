@@ -474,18 +474,31 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
 
         // URLhaus
-        try {
-          const urlhausResult = await apiRequest<unknown>(
-            config.abusech.urlhaus + "/host/",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/x-www-form-urlencoded" },
-              body: `host=${encodeURIComponent(domain)}`,
-            }
-          );
-          results.urlhaus = urlhausResult;
-        } catch (e) {
-          results.urlhaus = { error: e instanceof Error ? e.message : String(e) };
+        // Guarded, and sends Auth-Key — same defect as the hash aggregate:
+        // every per-source tool authenticates, every AGGREGATE did not. Without
+        // the header abuse.ch returns 401, which surfaces as `urlhaus: error`
+        // and reads to an analyst as "URLhaus has nothing on this indicator".
+        // Domains and URLs are the indicators most often enriched during
+        // phishing triage, so this failed where it mattered most.
+        if (services.abusech) {
+          try {
+            const urlhausResult = await apiRequest<unknown>(
+              config.abusech.urlhaus + "/host/",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/x-www-form-urlencoded",
+                  "Auth-Key": config.abusech.authKey!,
+                },
+                body: `host=${encodeURIComponent(domain)}`,
+              }
+            );
+            results.urlhaus = urlhausResult;
+          } catch (e) {
+            results.urlhaus = { error: e instanceof Error ? e.message : String(e) };
+          }
+        } else {
+          results.urlhaus = { skipped: "ABUSECH_AUTH_KEY not set" };
         }
 
         return {
@@ -568,18 +581,31 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
 
         // URLhaus
-        try {
-          const urlhausResult = await apiRequest<unknown>(
-            config.abusech.urlhaus + "/url/",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/x-www-form-urlencoded" },
-              body: `url=${encodeURIComponent(url)}`,
-            }
-          );
-          results.urlhaus = urlhausResult;
-        } catch (e) {
-          results.urlhaus = { error: e instanceof Error ? e.message : String(e) };
+        // Guarded, and sends Auth-Key — same defect as the hash aggregate:
+        // every per-source tool authenticates, every AGGREGATE did not. Without
+        // the header abuse.ch returns 401, which surfaces as `urlhaus: error`
+        // and reads to an analyst as "URLhaus has nothing on this indicator".
+        // Domains and URLs are the indicators most often enriched during
+        // phishing triage, so this failed where it mattered most.
+        if (services.abusech) {
+          try {
+            const urlhausResult = await apiRequest<unknown>(
+              config.abusech.urlhaus + "/url/",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/x-www-form-urlencoded",
+                  "Auth-Key": config.abusech.authKey!,
+                },
+                body: `url=${encodeURIComponent(url)}`,
+              }
+            );
+            results.urlhaus = urlhausResult;
+          } catch (e) {
+            results.urlhaus = { error: e instanceof Error ? e.message : String(e) };
+          }
+        } else {
+          results.urlhaus = { skipped: "ABUSECH_AUTH_KEY not set" };
         }
 
         return {
