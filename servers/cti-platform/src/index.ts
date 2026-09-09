@@ -128,13 +128,13 @@ class OpenCTIServer {
         // Reports
         {
           name: 'get_latest_reports',
-          description: '獲取最新的OpenCTI報告',
+          description: 'Get the most recent OpenCTI reports',
           inputSchema: {
             type: 'object',
             properties: {
               first: {
                 type: 'number',
-                description: '返回結果數量限制',
+                description: 'Maximum number of results to return',
                 default: 10,
               },
             },
@@ -142,13 +142,13 @@ class OpenCTIServer {
         },
         {
           name: 'get_report_by_id',
-          description: '根據ID獲取OpenCTI報告',
+          description: 'Get an OpenCTI report by ID',
           inputSchema: {
             type: 'object',
             properties: {
               id: {
                 type: 'string',
-                description: '報告ID',
+                description: 'Report ID',
               },
             },
             required: ['id'],
@@ -157,17 +157,17 @@ class OpenCTIServer {
         // Search
         {
           name: 'search_indicators',
-          description: '搜尋OpenCTI中的指標',
+          description: 'Search indicators in OpenCTI',
           inputSchema: {
             type: 'object',
             properties: {
               query: {
                 type: 'string',
-                description: '搜尋關鍵字',
+                description: 'Search keyword',
               },
               first: {
                 type: 'number',
-                description: '返回結果數量限制',
+                description: 'Maximum number of results to return',
                 default: 10,
               },
             },
@@ -176,17 +176,17 @@ class OpenCTIServer {
         },
         {
           name: 'search_malware',
-          description: '搜尋OpenCTI中的惡意程式',
+          description: 'Search malware in OpenCTI',
           inputSchema: {
             type: 'object',
             properties: {
               query: {
                 type: 'string',
-                description: '搜尋關鍵字',
+                description: 'Search keyword',
               },
               first: {
                 type: 'number',
-                description: '返回結果數量限制',
+                description: 'Maximum number of results to return',
                 default: 10,
               },
             },
@@ -195,17 +195,17 @@ class OpenCTIServer {
         },
         {
           name: 'search_threat_actors',
-          description: '搜尋OpenCTI中的威脅行為者',
+          description: 'Search threat actors in OpenCTI',
           inputSchema: {
             type: 'object',
             properties: {
               query: {
                 type: 'string',
-                description: '搜尋關鍵字',
+                description: 'Search keyword',
               },
               first: {
                 type: 'number',
-                description: '返回結果數量限制',
+                description: 'Maximum number of results to return',
                 default: 10,
               },
             },
@@ -215,13 +215,13 @@ class OpenCTIServer {
         // Users & Groups
         {
           name: 'get_user_by_id',
-          description: '根據ID獲取使用者資訊',
+          description: 'Get a user by ID',
           inputSchema: {
             type: 'object',
             properties: {
               id: {
                 type: 'string',
-                description: '使用者ID',
+                description: 'User ID',
               },
             },
             required: ['id'],
@@ -229,7 +229,7 @@ class OpenCTIServer {
         },
         {
           name: 'list_users',
-          description: '列出所有使用者',
+          description: 'List all users',
           inputSchema: {
             type: 'object',
             properties: {},
@@ -237,13 +237,13 @@ class OpenCTIServer {
         },
         {
           name: 'list_groups',
-          description: '列出所有群組',
+          description: 'List all groups',
           inputSchema: {
             type: 'object',
             properties: {
               first: {
                 type: 'number',
-                description: '返回結果數量限制',
+                description: 'Maximum number of results to return',
                 default: 10,
               },
             },
@@ -252,13 +252,13 @@ class OpenCTIServer {
         // STIX Objects
         {
           name: 'list_attack_patterns',
-          description: '列出所有攻擊模式',
+          description: 'List all attack patterns',
           inputSchema: {
             type: 'object',
             properties: {
               first: {
                 type: 'number',
-                description: '返回結果數量限制',
+                description: 'Maximum number of results to return',
                 default: 10,
               },
             },
@@ -266,13 +266,13 @@ class OpenCTIServer {
         },
         {
           name: 'get_campaign_by_name',
-          description: '根據名稱獲取行動資訊',
+          description: 'Get a campaign by name',
           inputSchema: {
             type: 'object',
             properties: {
               name: {
                 type: 'string',
-                description: '行動名稱',
+                description: 'Campaign name',
               },
             },
             required: ['name'],
@@ -281,7 +281,7 @@ class OpenCTIServer {
         // System
         {
           name: 'list_connectors',
-          description: '列出所有連接器',
+          description: 'List all connectors',
           inputSchema: {
             type: 'object',
             properties: {},
@@ -289,7 +289,7 @@ class OpenCTIServer {
         },
         {
           name: 'list_status_templates',
-          description: '列出所有狀態模板',
+          description: 'List all status templates',
           inputSchema: {
             type: 'object',
             properties: {},
@@ -298,13 +298,13 @@ class OpenCTIServer {
         // Files
         {
           name: 'get_file_by_id',
-          description: '根據ID獲取檔案資訊',
+          description: 'Get a file by ID',
           inputSchema: {
             type: 'object',
             properties: {
               id: {
                 type: 'string',
-                description: '檔案ID',
+                description: 'File ID',
               },
             },
             required: ['id'],
@@ -312,7 +312,7 @@ class OpenCTIServer {
         },
         {
           name: 'list_files',
-          description: '列出所有檔案',
+          description: 'List all files',
           inputSchema: {
             type: 'object',
             properties: {},
@@ -321,7 +321,7 @@ class OpenCTIServer {
         // References
         {
           name: 'list_marking_definitions',
-          description: '列出所有標記定義',
+          description: 'List all marking definitions',
           inputSchema: {
             type: 'object',
             properties: {},
@@ -329,7 +329,7 @@ class OpenCTIServer {
         },
         {
           name: 'list_labels',
-          description: '列出所有標籤',
+          description: 'List all labels',
           inputSchema: {
             type: 'object',
             properties: {},

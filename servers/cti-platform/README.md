@@ -1,7 +1,6 @@
 # OpenCTI MCP Server
 
 [![smithery badge](https://smithery.ai/badge/opencti-server)](https://smithery.ai/server/opencti-server)
-[Traditional Chinese (繁體中文)](README.zh-TW.md)
 
 <a href="https://glama.ai/mcp/servers/ml61kiz1gm"><img width="380" height="200" src="https://glama.ai/mcp/servers/ml61kiz1gm/badge" alt="OpenCTI Server MCP server" /></a>
 
