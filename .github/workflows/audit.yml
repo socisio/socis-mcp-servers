@@ -1,0 +1,49 @@
+name: Dependency audit
+on:
+  schedule: [{ cron: "0 6 * * 1" }]
+  workflow_dispatch:
+  pull_request:
+    paths: ["servers/*/package.json", "servers/*/package-lock.json",
+            "servers/n8n/requirements.txt", "servers/n8n/pyproject.toml"]
+permissions:
+  contents: read
+
+jobs:
+  npm:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        server: [threat-intel, ioc-reputation, attack-surface, cti-platform, nvd]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      # REPORT, not a gate. Every manifest's bootstrap already runs
+      # `npm audit fix`, and these are forks whose transitive advisories we
+      # often cannot resolve upstream. A red X on an unfixable advisory is a
+      # check people learn to ignore; a readable report is not.
+      - name: Audit ${{ matrix.server }}
+        working-directory: servers/${{ matrix.server }}
+        continue-on-error: true
+        run: |
+          [ -f package.json ] || exit 0
+          npm install --package-lock-only --ignore-scripts
+          echo "### ${{ matrix.server }}" >> "$GITHUB_STEP_SUMMARY"
+          npm audit --audit-level=moderate || true
+          npm audit --json 2>/dev/null \
+            | python3 -c 'import json,sys;d=json.load(sys.stdin).get("metadata",{}).get("vulnerabilities",{});print("\n".join(f"- {k}: {v}" for k,v in d.items() if v) or "- none")' \
+            >> "$GITHUB_STEP_SUMMARY" || true
+
+  pip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Audit n8n
+        working-directory: servers/n8n
+        continue-on-error: true
+        run: |
+          pip install pip-audit --quiet
+          pip-audit -r requirements.txt || true
