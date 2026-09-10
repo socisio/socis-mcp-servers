@@ -1,6 +1,5 @@
 # Dependencies
 node_modules/
-package-lock.json
 yarn.lock
 
 # Logs
@@ -107,3 +106,8 @@ dist
 # OS
 .DS_Store
 Thumbs.db
+
+# package-lock.json is COMMITTED here, unlike upstream.
+# These are servers we ship, not a library: npm ci needs a
+# lockfile (CI failed with EUSAGE without one), and Dependabot
+# cannot propose precise transitive fixes without it.
