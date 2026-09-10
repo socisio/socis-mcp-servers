@@ -10,32 +10,32 @@ version: 2
 updates:
   - package-ecosystem: npm
     directory: /servers/threat-intel
-    schedule: { interval: weekly }
+    schedule: { interval: monthly }
     open-pull-requests-limit: 5
     labels: [dependencies, threat-intel]
   - package-ecosystem: npm
     directory: /servers/ioc-reputation
-    schedule: { interval: weekly }
+    schedule: { interval: monthly }
     open-pull-requests-limit: 5
     labels: [dependencies, ioc-reputation]
   - package-ecosystem: npm
     directory: /servers/attack-surface
-    schedule: { interval: weekly }
+    schedule: { interval: monthly }
     open-pull-requests-limit: 5
     labels: [dependencies, attack-surface]
   - package-ecosystem: npm
     directory: /servers/cti-platform
-    schedule: { interval: weekly }
+    schedule: { interval: monthly }
     open-pull-requests-limit: 5
     labels: [dependencies, cti-platform]
   - package-ecosystem: npm
     directory: /servers/nvd
-    schedule: { interval: weekly }
+    schedule: { interval: monthly }
     open-pull-requests-limit: 5
     labels: [dependencies, nvd]
   - package-ecosystem: pip
     directory: /servers/n8n
-    schedule: { interval: weekly }
+    schedule: { interval: monthly }
     open-pull-requests-limit: 5
     labels: [dependencies, n8n]
   - package-ecosystem: github-actions
