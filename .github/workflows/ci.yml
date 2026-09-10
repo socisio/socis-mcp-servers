@@ -12,7 +12,7 @@ jobs:
         server: [threat-intel, ioc-reputation, attack-surface, cti-platform, n8n, nvd]
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: '20'
       # A server that does not build cannot be installed by the catalog —
