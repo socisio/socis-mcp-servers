@@ -17,7 +17,7 @@ jobs:
         server: [threat-intel, ioc-reputation, attack-surface, cti-platform, nvd]
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with: { node-version: '20' }
       # REPORT, not a gate. Every manifest's bootstrap already runs
       # `npm audit fix`, and these are forks whose transitive advisories we
